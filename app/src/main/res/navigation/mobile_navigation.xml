@@ -22,4 +22,8 @@
         android:name="com.example.travelexperts.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <activity
+        android:id="@+id/profile"
+        android:name="com.example.travelexperts.ProfileActivity"
+        android:label="ProfileActivity" />
 </navigation>
