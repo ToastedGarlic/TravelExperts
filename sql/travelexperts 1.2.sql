@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 05:05 AM
+-- Generation Time: May 02, 2024 at 04:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -620,6 +620,32 @@ INSERT INTO `fees` (`FeeId`, `FeeName`, `FeeAmt`, `FeeDesc`) VALUES
 ('NSF', 'Insufficient Funds', 25.0000, NULL),
 ('RF', 'Refund', 25.0000, NULL),
 ('RS', 'Research', 50.0000, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `MessageId` int(11) NOT NULL,
+  `MsgDate` datetime DEFAULT current_timestamp(),
+  `MsgContent` varchar(50) DEFAULT NULL,
+  `AgentId` int(11) DEFAULT NULL,
+  `CustomerId` int(11) DEFAULT NULL,
+  `MsgRead` tinyint(1) NOT NULL DEFAULT 0,
+  `MsgFlagged` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`MessageId`, `MsgDate`, `MsgContent`, `AgentId`, `CustomerId`, `MsgRead`, `MsgFlagged`) VALUES
+(1, '2024-05-02 07:29:27', 'aaaaa', 1, 1, 0, 0),
+(2, '2024-05-02 08:04:01', 'John Coville: sss', 4, 104, 0, 0),
+(3, '2024-05-02 08:15:58', 'John Coville: wawewawa', 4, 104, 0, 0),
+(4, '2024-05-02 08:16:05', 'John Coville: dwaadwadwa', 4, 104, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1492,6 +1518,12 @@ ALTER TABLE `fees`
   ADD PRIMARY KEY (`FeeId`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`MessageId`);
+
+--
 -- Indexes for table `packages`
 --
 ALTER TABLE `packages`
@@ -1602,6 +1634,12 @@ ALTER TABLE `creditcards`
 --
 ALTER TABLE `customers`
   MODIFY `CustomerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `packages`
