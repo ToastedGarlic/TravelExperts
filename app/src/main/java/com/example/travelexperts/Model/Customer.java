@@ -13,8 +13,10 @@ public class Customer {
     private String custBusPhone;
     private String custEmail;
     private int agentId;
+    private String username;
+    private String password;
 
-    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String custCountry, String custHomePhone, String custBusPhone, String custEmail, int agentId) {
+    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String custCountry, String custHomePhone, String custBusPhone, String custEmail, int agentId, String username, String password) {
         this.customerId = customerId;
         this.custFirstName = custFirstName;
         this.custLastName = custLastName;
@@ -27,6 +29,8 @@ public class Customer {
         this.custBusPhone = custBusPhone;
         this.custEmail = custEmail;
         this.agentId = agentId;
+        this.username = username;
+        this.password = password;
     }
 
     public int getCustomerId() {
@@ -123,5 +127,21 @@ public class Customer {
 
     public void setAgentId(int agentId) {
         this.agentId = agentId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
