@@ -50,4 +50,10 @@
         android:label="@string/menu_login"
         tools:layout="@layout/activity_customerinfo"
         />
+    <activity
+        android:id="@+id/nav_packages"
+        android:name="com.example.travelexperts.ui.vacationpackage.VacationPackageActivity"
+        android:label="@string/menu_packages"
+        tools:layout="@layout/activity_vacationpackage"
+        />
 </navigation>

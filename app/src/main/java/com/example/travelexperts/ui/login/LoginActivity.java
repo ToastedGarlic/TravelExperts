@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,11 @@ import com.example.travelexperts.MainActivity;
 import com.example.travelexperts.Model.Customer;
 import com.example.travelexperts.R;
 import com.example.travelexperts.RegisterActivity;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -42,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvSignUp;
     SharedPreferences preferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
+
 
         tvSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,9 +102,43 @@ public class LoginActivity extends AppCompatActivity {
                             bw.close();
                             br.close();
 
-                            Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
+                            // check to see if return username and password matched
+                            StringBuffer sb2 = new StringBuffer();
+                            try {
+                                BufferedReader br2 = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
+                                String line2;
+                                while ((line2 = br2.readLine()) != null) {
+                                    sb.append(line2);
+                                }
+                                br2.close();
+                                JSONArray jsonArray = new JSONArray(sb.toString());
+                                if (jsonArray.length() == 1) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast toast = Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                        }
+                                    });
+                                    Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
 
-                            finish();
+                                }
+                                else
+                                {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast toast = Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
+                                            toast.show();
+                                        }
+                                    });
+
+                                }
+
+
+                            } catch (IOException | JSONException e) {
+                                throw new RuntimeException(e);
+                            }
 
                         } catch (URISyntaxException | IOException e) {
                             throw new RuntimeException(e);
@@ -103,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 };
                 t1.start();
+
             }
         });
     }
@@ -174,5 +218,16 @@ public class LoginActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
         }
+    }
+    private static JsonObject readJsonFromFile(String filePath) {
+        try {
+            Gson gson = new Gson();
+            JsonParser parser = new JsonParser();
+            JsonElement jsonElement = parser.parse(new FileReader(filePath));
+            return gson.fromJson(jsonElement, JsonObject.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
