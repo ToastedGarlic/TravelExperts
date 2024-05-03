@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.travelexperts.Model.Customer;
+import com.example.travelexperts.ui.login.LoginActivity;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -128,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 if (responseCode == HttpURLConnection.HTTP_CREATED) {  // Check for HTTP_CREATED (201)
                     Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registration failed: " + responseCode, Toast.LENGTH_LONG).show();
