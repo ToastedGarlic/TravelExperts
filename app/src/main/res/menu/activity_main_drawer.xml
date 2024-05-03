@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/ic_menu_register_foreground"
+            android:title="Register" />
+        <item
             android:id="@+id/messageFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
