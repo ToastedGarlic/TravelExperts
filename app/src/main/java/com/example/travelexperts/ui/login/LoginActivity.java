@@ -1,6 +1,7 @@
-package com.example.travelexperts;
+package com.example.travelexperts.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.travelexperts.MainActivity;
 import com.example.travelexperts.Model.Customer;
+import com.example.travelexperts.R;
+import com.example.travelexperts.RegisterActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +57,14 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvSignUp = findViewById(R.id.tvSignUp);
+
+        tvSignUp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("customerid", userid);
                 editor.commit();
-
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
 
 

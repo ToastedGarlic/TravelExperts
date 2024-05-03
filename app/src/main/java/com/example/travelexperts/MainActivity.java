@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActivityMainBinding binding;
     private Button btnRegister; // Button for registering
 
-    ListView lvPackages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(binding.appBarMain.toolbar);
         setupDrawerNavigation();
 
-        lvPackages = findViewById(R.id.lvPackages);
         initiatePackageRetrieval();
 
-        // Setup the register button
-        btnRegister = findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
     }
 
     private void setupDrawerNavigation() {
@@ -63,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_register)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_register, R.id.nav_login)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -127,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     double pkgAgencyCommission = jsonObject.getDouble("pkgAgencyCommission");
                     list.add(new Packages(packageId, pkgName, pkgStartDate, pkgEndDate, pkgDesc, pkgBasePrice, pkgAgencyCommission));
                 }
-                ArrayAdapter<Packages> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
-                runOnUiThread(() -> lvPackages.setAdapter(adapter));
+           //     ArrayAdapter<Packages> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+           //     runOnUiThread(() -> lvPackages.setAdapter(adapter));
             } catch (IOException | JSONException e) {
                 throw new RuntimeException(e);
             }

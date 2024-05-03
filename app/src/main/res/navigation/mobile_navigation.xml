@@ -25,6 +25,23 @@
     <fragment
         android:id="@+id/messageFragment"
         android:name="com.example.travelexperts.MessageFragment"
-        android:label="fragment_message"
+        android:label="Agent Messenger"
         tools:layout="@layout/fragment_message" />
+    <activity
+        android:id="@+id/nav_login"
+        android:name="com.example.travelexperts.ui.login.LoginActivity"
+        android:label="@string/menu_login"
+        tools:layout="@layout/activity_login"
+        />
+    <activity
+        android:id="@+id/nav_mybooking"
+        android:name="com.example.travelexperts.ui.mybooking.MyBookingActivity"
+        android:label="@string/menu_login"
+        tools:layout="@layout/activity_login"
+        />
+    <activity
+        android:id="@+id/nav_register"
+        android:name="com.example.travelexperts.RegisterActivity"
+        android:label="Register"
+        tools:layout="@layout/activity_register" />
 </navigation>
