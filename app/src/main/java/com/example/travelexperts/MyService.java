@@ -39,7 +39,7 @@ public class MyService extends Service {
         super.onCreate();
         Log.d("application", "in Service onCreate()");
         startTimer();
-        startAgentTimer();
+        //startAgentTimer();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class MyService extends Service {
         timer.schedule(timerTask, 1, 1000 * 60 * 5);
     }
 
-    private void startAgentTimer() {
+    /*private void startAgentTimer() {
         Log.d("michael", "in Service startAgentTimer");
         agenttimerTask = new TimerTask() {
             @Override
@@ -108,7 +108,7 @@ public class MyService extends Service {
         };
         agenttimer = new Timer();
         agenttimer.schedule(agenttimerTask, 1, 1000 * 30);
-    }
+    }*/
 
 
 }

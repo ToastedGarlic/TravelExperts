@@ -1,4 +1,4 @@
-package com.example.travelexperts;
+package com.example.travelexperts.ui.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.travelexperts.Model.Customer;
+import com.example.travelexperts.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
