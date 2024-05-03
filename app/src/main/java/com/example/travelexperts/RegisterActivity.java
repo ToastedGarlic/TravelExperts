@@ -1,5 +1,8 @@
 package com.example.travelexperts;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,13 +13,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.travelexperts.Model.Customer;
+import com.example.travelexperts.ui.login.LoginActivity;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -25,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
             edtCountry, edtHomePhone, edtBusPhone, edtEmail, edtAgentId, edtUsername, edtPassword;
     private Button btnRegister;
 
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,12 +129,49 @@ public class RegisterActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 if (responseCode == HttpURLConnection.HTTP_CREATED) {  // Check for HTTP_CREATED (201)
                     Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registration failed: " + responseCode, Toast.LENGTH_LONG).show();
                 }
             });
         } finally {
             connection.disconnect();
+        }
+    }
+
+
+    private class SaveCustomerId implements Runnable {
+        @Override
+        public void run() {
+            int userid;
+            String stringid = null;
+            StringBuffer sb = new StringBuffer();
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+                br.close();
+                JSONArray jsonArray = new JSONArray(sb.toString());
+                ArrayList<Customer> list = new ArrayList<>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    stringid = jsonObject.getString("customerId");
+
+                }
+                userid = Integer.parseInt(stringid);
+
+                preferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("customerid", userid);
+                editor.commit();
+
+
+            } catch (IOException | JSONException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
