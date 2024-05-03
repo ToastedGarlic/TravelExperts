@@ -40,7 +40,7 @@ public class MessageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
-        btnSend = view.findViewById(R.id.btnAgent);
+        btnSend = view.findViewById(R.id.btnSend);
         txtMsg = view.findViewById(R.id.txtMsg);
         btnSend.setOnClickListener(sendListener);
 
