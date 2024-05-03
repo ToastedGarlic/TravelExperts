@@ -44,4 +44,10 @@
         android:name="com.example.travelexperts.RegisterActivity"
         android:label="Register"
         tools:layout="@layout/activity_register" />
+    <activity
+        android:id="@+id/nav_profile"
+        android:name="com.example.travelexperts.ui.customerinfo.CustomerInfoActivity"
+        android:label="@string/menu_login"
+        tools:layout="@layout/activity_customerinfo"
+        />
 </navigation>
