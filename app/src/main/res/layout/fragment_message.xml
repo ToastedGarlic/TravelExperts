@@ -16,36 +16,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginBottom="40dp"
             android:text="Your Travel Agent: "
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
+            app:layout_constraintLeft_toRightOf="@id/textInputLayout"
+            tools:layout_editor_absoluteY="683dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="409dp"
+            android:id="@+id/textInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="1dp">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="109dp"
+                android:id="@+id/txtMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="Send a message"
-                android:inputType="text|textMultiLine|textNoSuggestions"
+                android:inputType="text|textNoSuggestions"
+                android:minWidth="260dp"
+                android:minHeight="80dp"
                 android:paddingTop="10dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
             android:background="#DCFFF7"
             android:backgroundTint="#AFE6DE"
             android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/txtAgentName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -58,11 +75,25 @@
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
-                    android:layout_height="357dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="150dp"
                     android:text="Sample Text"
                     android:textSize="25sp" />
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="119dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

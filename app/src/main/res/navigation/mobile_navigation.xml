@@ -25,6 +25,6 @@
     <fragment
         android:id="@+id/messageFragment"
         android:name="com.example.travelexperts.MessageFragment"
-        android:label="fragment_message"
+        android:label="Agent Messenger"
         tools:layout="@layout/fragment_message" />
 </navigation>
