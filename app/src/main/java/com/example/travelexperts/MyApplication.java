@@ -17,7 +17,9 @@ public class MyApplication extends Application {
         Log.d("applicaiton", "in Application onCreate()");
 
         intent = new Intent(this, MyService.class);
+        startService(intent);
 
+        intent = new Intent(this, MessengerService.class);
         startService(intent);
 
     }
