@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travelexperts.Model.Messages;
@@ -36,12 +37,15 @@ public class MessageFragment extends Fragment {
 
     private Button btnSend;
     private EditText txtMsg;
+
+    private TextView txtContent;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
         btnSend = view.findViewById(R.id.btnSend);
         txtMsg = view.findViewById(R.id.txtMsg);
+        txtContent = view.findViewById(R.id.txtContent);
         btnSend.setOnClickListener(sendListener);
 
         return view;
