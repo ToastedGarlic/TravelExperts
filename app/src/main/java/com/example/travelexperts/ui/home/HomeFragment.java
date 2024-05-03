@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
 
     }
     private final View.OnClickListener profileListener= v -> {
-
+        Navigation.findNavController(getView()).navigate(R.id.action_prof);
     };
 
     private final View.OnClickListener bookListener= v -> {

@@ -16,6 +16,12 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_prof"
+            app:destination="@id/customerInfo"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
     <fragment
@@ -52,7 +58,7 @@
         android:label="Register"
         tools:layout="@layout/activity_register" />
     <activity
-        android:id="@+id/nav_profile"
+        android:id="@+id/customerInfo"
         android:name="com.example.travelexperts.ui.customerinfo.CustomerInfoActivity"
         android:label="@string/menu_login"
         tools:layout="@layout/activity_customerinfo"
@@ -63,4 +69,9 @@
         android:label="@string/menu_packages"
         tools:layout="@layout/activity_vacationpackage"
         />
+    <fragment
+        android:id="@+id/customerInfo"
+        android:name="com.example.travelexperts.CustomerInfo"
+        android:label="Customer Info"
+        tools:layout="@layout/fragment_customer_info" />
 </navigation>
