@@ -2,12 +2,17 @@ package com.example.travelexperts;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +23,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travelexperts.Model.Messages;
+import com.example.travelexperts.Model.Packages;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Executors;
 
 public class MessageFragment extends Fragment {
@@ -38,6 +56,7 @@ public class MessageFragment extends Fragment {
     private Button btnSend;
     private EditText txtMsg;
 
+    private MessageRetrieval messageRetrieval;
     private TextView txtContent;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,22 +66,33 @@ public class MessageFragment extends Fragment {
         txtMsg = view.findViewById(R.id.txtMsg);
         txtContent = view.findViewById(R.id.txtContent);
         btnSend.setOnClickListener(sendListener);
-
+//        Intent intent = new Intent(view.getContext(), MessengerService.class);
+//        view.getContext().startService(intent);
+        messageRetrieval = new MessageRetrieval();
+        messageRetrieval.activity = getActivity();
+        messageRetrieval.target = txtContent;
+        new Thread(messageRetrieval).start();
         return view;
     }
 
     private final View.OnClickListener sendListener= v -> {
+        SharedPreferences pref = v.getContext().getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+        int custid = pref.getInt("customerid", 0);
+        String custname = pref.getString("custName", "Friend");
+        sendMessage(custid,custname);
+        txtMsg.setText("");
 
     };
 
 
-    private void sendMessage() {
+    private void sendMessage(int custId, String custname) {
+        Date date = new Date();
         Messages message = new Messages(
                 0,
-                "",
-                txtMsg.getText().toString(),
+                null,
+                custname + ": "+txtMsg.getText().toString(),
                 0,
-                0
+                custId
         );
 
         Gson gson = new Gson();
@@ -98,16 +128,50 @@ public class MessageFragment extends Fragment {
             writer.write(jsonData);
             writer.flush();
             int responseCode = connection.getResponseCode();
-            getActivity().runOnUiThread(() -> {
-                if (responseCode == HttpURLConnection.HTTP_CREATED) {  // Check for HTTP_CREATED (201)
-             //       Toast.makeText(getActivity(), "Registered Successfully", Toast.LENGTH_LONG).show();
-                } else {
-             //       Toast.makeText(getActivity(), "Registration failed: " + responseCode, Toast.LENGTH_LONG).show();
-                }
-            });
+
         } finally {
             connection.disconnect();
 
         }
     }
+    private class MessageRetrieval implements Runnable {
+        TextView target;
+        Activity activity;
+        @Override
+        public void run() {
+            while(true){
+                SystemClock.sleep(1000);
+                String fullMsg = "";
+                StringBuffer sb = new StringBuffer();
+                try {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(activity.openFileInput("messagedata.json")));
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONArray jsonArray = new JSONArray(sb.toString());
+                    ArrayList<Packages> list = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        String msgContent = jsonObject.getString("msgContent");
+                        String msgDate = "";
+                        fullMsg += msgDate + "\n" + msgContent + "\n\n";
+                    }
+                    String finalFullMsg = fullMsg;
+
+                    activity.runOnUiThread(() -> target.setText(finalFullMsg));
+
+                    //     ArrayAdapter<Packages> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+                    //     runOnUiThread(() -> lvPackages.setAdapter(adapter));
+                } catch (IOException | JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        }
+    }
+
 }
+

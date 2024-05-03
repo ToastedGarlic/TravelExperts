@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(openFileOutput("user.json", MODE_PRIVATE)));
                             bw.write(sb.toString());
                             bw.close();
-                            br.close();
 
                             Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
 
@@ -110,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             int userid;
             String stringid = null;
             StringBuffer sb = new StringBuffer();
+            String custName = null;
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
                 String line;
@@ -124,13 +124,16 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     stringid = jsonObject.getString("customerId");
-
+                    String firstname = jsonObject.getString("custFirstName");
+                    String lastname = jsonObject.getString("custLastName");
+                    custName = firstname + " " + lastname;
                 }
                 userid = Integer.parseInt(stringid);
 
                 preferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("customerid", userid);
+                editor.putString("custName", custName);
                 editor.commit();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
