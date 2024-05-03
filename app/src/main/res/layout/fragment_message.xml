@@ -11,27 +11,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.gallery.GalleryFragment">
 
-        <TextView
-            android:id="@+id/txtAgentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="40dp"
-            android:text="Your Travel Agent: "
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
-            app:layout_constraintLeft_toRightOf="@id/textInputLayout"
-            tools:layout_editor_absoluteY="683dp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
@@ -44,10 +23,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Send a message"
+                android:imeOptions="actionSend"
                 android:inputType="text|textNoSuggestions"
                 android:minWidth="260dp"
                 android:minHeight="80dp"
-                android:paddingTop="10dp" />
+                android:paddingTop="10dp"
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,11 +39,11 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:background="#DCFFF7"
             android:backgroundTint="#AFE6DE"
             android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@+id/txtAgentName"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -76,8 +57,9 @@
                     android:id="@+id/txtContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="150dp"
-                    android:textSize="18sp" />
+                    android:minHeight="300dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
 

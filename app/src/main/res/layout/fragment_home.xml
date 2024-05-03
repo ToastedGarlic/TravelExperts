@@ -22,6 +22,18 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="190dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="150dp"
+            android:text="Log Out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnServices" />
+
+        <Button
             android:id="@+id/btnServices"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
@@ -50,7 +62,7 @@
             android:drawableTop="@drawable/agent_170"
             android:foregroundTint="#FFC900"
             android:freezesText="false"
-            android:text="Travel Agent"
+            android:text="Agent Chat"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -73,7 +85,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:drawableTop="@drawable/book_170"
-            android:text="Book a Trip"
+            android:text="View Bookings"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#000000"
             android:textSize="20sp"

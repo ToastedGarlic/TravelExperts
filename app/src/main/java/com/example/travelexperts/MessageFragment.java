@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment;
 
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +69,24 @@ public class MessageFragment extends Fragment {
         btnSend = view.findViewById(R.id.btnSend);
         txtMsg = view.findViewById(R.id.txtMsg);
         txtContent = view.findViewById(R.id.txtContent);
+        txtMsg.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+             @Override
+             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                 boolean handled = false;
+                 if (actionId == EditorInfo.IME_ACTION_SEND) {
+                     if(txtMsg.getText().toString().equals("")){return false;}
+                     SharedPreferences pref = v.getContext().getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+                     int custid = pref.getInt("customerid", 0);
+                     String custname = pref.getString("custName", "Friend");
+                     sendMessage(custid,custname);
+                     txtMsg.setText("");
+                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                     handled = true;
+                 }
+                 return handled;
+             }
+         });
         btnSend.setOnClickListener(sendListener);
 //        Intent intent = new Intent(view.getContext(), MessengerService.class);
 //        view.getContext().startService(intent);
@@ -81,11 +103,13 @@ public class MessageFragment extends Fragment {
         String custname = pref.getString("custName", "Friend");
         sendMessage(custid,custname);
         txtMsg.setText("");
-
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     };
 
 
     private void sendMessage(int custId, String custname) {
+        if(txtMsg.getText().toString().equals("")){return;}
         Date date = new Date();
         Messages message = new Messages(
                 0,
@@ -140,7 +164,7 @@ public class MessageFragment extends Fragment {
         @Override
         public void run() {
             while(true){
-                SystemClock.sleep(1000);
+                SystemClock.sleep(2000);
                 String fullMsg = "";
                 StringBuffer sb = new StringBuffer();
                 try {
@@ -161,7 +185,9 @@ public class MessageFragment extends Fragment {
                     }
                     String finalFullMsg = fullMsg;
 
-                    activity.runOnUiThread(() -> target.setText(finalFullMsg));
+                    activity.runOnUiThread(() -> {target.setText(finalFullMsg);
+                    ScrollView scroll = (ScrollView)target.getParent().getParent();
+                    scroll.fullScroll(View.FOCUS_DOWN);});
 
                     //     ArrayAdapter<Packages> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
                     //     runOnUiThread(() -> lvPackages.setAdapter(adapter));
