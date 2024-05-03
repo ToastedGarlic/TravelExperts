@@ -30,9 +30,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="109dp"
                 android:hint="Send a message"
-                android:inputType="text|textMultiLine|textNoSuggestions" />
+                android:inputType="text|textMultiLine|textNoSuggestions"
+                android:paddingTop="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ScrollView
