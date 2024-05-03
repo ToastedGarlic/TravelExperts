@@ -11,17 +11,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.gallery.GalleryFragment">
 
-        <TextView
-            android:id="@+id/txtAgentName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="40dp"
-            android:text="Your Travel Agent: "
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
@@ -58,11 +47,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="30dp"
             android:background="#DCFFF7"
             android:backgroundTint="#AFE6DE"
             android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@+id/txtAgentName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

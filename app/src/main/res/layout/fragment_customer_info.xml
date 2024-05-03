@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.customerinfo.CustomerInfoActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+
+            <!-- First Name -->
+            <TextView
+                android:id="@+id/tvFirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/custFirstName"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtFirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/tvFirstName"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+
+            <!-- Last Name -->
+            <TextView
+                android:id="@+id/tvLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custLastName"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtFirstName"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtLastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvLastName"
+                app:layout_constraintTop_toBottomOf="@+id/tvLastName" />
+
+            <!-- Address -->
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custAddress"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtLastName"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textPostalAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvAddress"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+            <!-- City -->
+            <TextView
+                android:id="@+id/tvCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custCity"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtAddress"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtCity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvCity"
+                app:layout_constraintTop_toBottomOf="@+id/tvCity" />
+
+            <!-- Province -->
+            <TextView
+                android:id="@+id/tvProvince"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custProv"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtCity"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtProv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvProvince"
+                app:layout_constraintTop_toBottomOf="@+id/tvProvince" />
+
+            <!-- Postal Code -->
+            <TextView
+                android:id="@+id/tvPostalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custPostal"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtProv"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtPostal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvPostalCode"
+                app:layout_constraintTop_toBottomOf="@+id/tvPostalCode" />
+
+            <!-- Country -->
+            <TextView
+                android:id="@+id/tvCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custCountry"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtPostal"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtCountry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvCountry"
+                app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
+
+            <!-- Home Phone -->
+            <TextView
+                android:id="@+id/tvHomePhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custHomePhone"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtCountry"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtHomePhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvHomePhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvHomePhone" />
+
+            <!-- Business Phone -->
+            <TextView
+                android:id="@+id/tvBusPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custBusPhone"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtHomePhone"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtBusPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvBusPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvBusPhone" />
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custEmail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtBusPhone"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvEmail"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <!-- Agent ID -->
+            <TextView
+                android:id="@+id/tvAgentId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/agentId"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tvFirstName"
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/edtAgentId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tvAgentId"
+                app:layout_constraintTop_toBottomOf="@+id/tvAgentId" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>
