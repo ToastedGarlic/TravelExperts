@@ -18,6 +18,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="44dp"
             android:text="Your Travel Agent: "
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -29,8 +30,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="143dp"
-                android:hint="Send a message" />
+                android:layout_height="68dp"
+                android:hint="Send a message"
+                android:inputType="text|textMultiLine|textNoSuggestions" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ScrollView
@@ -38,7 +40,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:background="#DCFFF7"
             android:backgroundTint="#AFE6DE"
