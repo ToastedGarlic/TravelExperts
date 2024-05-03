@@ -33,6 +33,23 @@ public class Customer {
         this.password = password;
     }
 
+    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String custCountry, String custHomePhone, String custBusPhone, String custEmail, int agentId) {
+        this.customerId = customerId;
+        this.custFirstName = custFirstName;
+        this.custLastName = custLastName;
+        this.custAddress = custAddress;
+        this.custCity = custCity;
+        this.custProv = custProv;
+        this.custPostal = custPostal;
+        this.custCountry = custCountry;
+        this.custHomePhone = custHomePhone;
+        this.custBusPhone = custBusPhone;
+        this.custEmail = custEmail;
+        this.agentId = agentId;
+    }
+
+
+
     public int getCustomerId() {
         return customerId;
     }
