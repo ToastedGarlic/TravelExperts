@@ -179,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
                 for (int i = 0; i <jsonArray.length(); i++)
                 {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    stringid = jsonObject.getString("customerId");
+                    String id = jsonObject.getString("customerId");
                     String firstname = jsonObject.getString("custFirstName");
                     String lastname = jsonObject.getString("custLastName");
                     custName = firstname + " " + lastname;
