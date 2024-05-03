@@ -49,6 +49,10 @@
             android:enabled="true"
             android:exported="true" />
 
+        <service
+            android:name=".MessengerService"
+            android:enabled="true"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
