@@ -95,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
 
+                            finish();
+
                         } catch (URISyntaxException | IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -107,8 +109,18 @@ public class LoginActivity extends AppCompatActivity {
     private class SaveCustomerId implements Runnable {
         @Override
         public void run() {
-            int userid;
-            String stringid = null;
+            int customerId = 0;
+            String custFirstName = null;
+            String custLastName = null;
+            String custAddress = null;
+            String custCity = null;
+            String custProv = null;
+            String custPostal = null;
+            String custCountry = null;
+            String custHomePhone = null;
+            String custBusPhone = null;
+            String custEmail = null;
+            int agentId = 0;
             StringBuffer sb = new StringBuffer();
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
@@ -123,14 +135,36 @@ public class LoginActivity extends AppCompatActivity {
                 for (int i = 0; i <jsonArray.length(); i++)
                 {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    stringid = jsonObject.getString("customerId");
+                    customerId = Integer.parseInt(jsonObject.getString("customerId"));
+                    custFirstName = jsonObject.getString("custFirstName");
+                    custLastName = jsonObject.getString("custLastName");
+                    custAddress = jsonObject.getString("custAddress");
+                    custCity = jsonObject.getString("custCity");
+                    custProv = jsonObject.getString("custProv");
+                    custPostal = jsonObject.getString("custPostal");
+                    custCountry = jsonObject.getString("custCountry");
+                    custHomePhone = jsonObject.getString("custHomePhone");
+                    custBusPhone = jsonObject.getString("custBusPhone");
+                    custEmail = jsonObject.getString("custEmail");
+                    agentId = Integer.parseInt(jsonObject.getString("agentId"));
 
                 }
-                userid = Integer.parseInt(stringid);
+
 
                 preferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("customerid", userid);
+                editor.putInt("customerId", customerId);
+                editor.putString("custFirstName", custFirstName);
+                editor.putString("custLastName", custLastName);
+                editor.putString("custAddress", custAddress);
+                editor.putString("custCity", custCity);
+                editor.putString("custProv", custProv);
+                editor.putString("custPostal", custPostal);
+                editor.putString("custCountry", custCountry);
+                editor.putString("custHomPhone", custHomePhone);
+                editor.putString("custBusPhone", custBusPhone);
+                editor.putString("custEmail", custEmail);
+                editor.putInt("agentId", agentId);
                 editor.commit();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 

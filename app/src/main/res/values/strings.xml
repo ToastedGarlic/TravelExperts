@@ -12,4 +12,23 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_login">Login</string>
     <string name="menu_mybooking">Booking</string>
+    <string name="menu_profile">Profile</string>
+
+    <string name="customerId">Id</string>
+    <string name="custFirstName">First Name</string>
+    <string name="custLastName">Last Name</string>
+    <string name="custAddress">Address</string>
+    <string name="custCity">City</string>
+    <string name="custProv">Province</string>
+    <string name="custPostal">Postal</string>
+    <string name="custCountry">Country</string>
+    <string name="custHomePhone">Home Phone</string>
+    <string name="custBusPhone">Bussiness Phone</string>
+    <string name="custEmail">Email</string>
+    <string name="agentId">Agent Id</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="login">Login</string>
+    <string name="createaccount">New User? Sign Up Now!</string>
 </resources>
