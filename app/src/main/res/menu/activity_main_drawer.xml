@@ -21,10 +21,10 @@
             android:icon="@drawable/ic_menu_register_foreground"
             android:title="Register" />
         <item
-            android:id="@+id/profile"
+            android:id="@+id/messageFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_launcher_foreground"
-            android:title="Profile" />
+            android:title="Agent" />
     </group>
 </menu>
