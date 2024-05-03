@@ -94,7 +94,7 @@ public class MessengerService extends Service {
             }
         };
         agenttimer = new Timer();
-        agenttimer.schedule(agenttimerTask, 1, 1000 * 1);
+        agenttimer.schedule(agenttimerTask, 1, 2000 );
     }
 
 
