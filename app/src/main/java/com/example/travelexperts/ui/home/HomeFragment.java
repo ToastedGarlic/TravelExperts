@@ -24,6 +24,10 @@ import com.example.travelexperts.R;
 import com.example.travelexperts.databinding.FragmentHomeBinding;
 import com.example.travelexperts.ui.login.LoginActivity;
 
+//HomeFragment.java
+//author: Michael Chessall
+//fragment_home.xml
+//author: Michael Chessall
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;

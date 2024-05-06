@@ -19,7 +19,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
-
+//MessengerService.java
+//author: Michael Chessall
 public class MessengerService extends Service {
     TimerTask agenttimerTask;
     Timer agenttimer;

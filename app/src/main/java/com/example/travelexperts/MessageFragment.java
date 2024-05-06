@@ -49,6 +49,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Executors;
 
+//MessageFragment.java
+//author: Michael Chessall
+// fragment_message.xml
+//author: Michael Chessall
+
 public class MessageFragment extends Fragment {
 
     private MessageViewModel mViewModel;

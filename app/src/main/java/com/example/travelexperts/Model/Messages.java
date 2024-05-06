@@ -1,5 +1,7 @@
 package com.example.travelexperts.Model;
 
+// Messages.java
+//author: Michael Chessall
 public class Messages {
     private int messageId;
     private String msgDate;
