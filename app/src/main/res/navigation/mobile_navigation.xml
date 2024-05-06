@@ -81,11 +81,10 @@
         android:label="@string/menu_packages"
         tools:layout="@layout/fragment_package"
         />
-    <!--    code by jack-->
     <fragment
         android:id="@+id/customerInfo"
         android:name="com.example.travelexperts.CustomerInfo"
-        android:label="Customer Info"
+        android:label="@string/menu_myInfo"
         tools:layout="@layout/fragment_customer_info" />
 
 </navigation>

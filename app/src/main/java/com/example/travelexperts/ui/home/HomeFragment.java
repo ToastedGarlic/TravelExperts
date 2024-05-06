@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         SharedPreferences sp1=this.getActivity().getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
-        txtCust.setText("Good afternoon, \n" + sp1.getString("custName", "Friend"));
+        txtCust.setText("Welcome, \n" + sp1.getString("custName", "Friend"));
 
         btnProfile = root.findViewById(R.id.btnProfile);
         btnProfile.setOnClickListener(profileListener);

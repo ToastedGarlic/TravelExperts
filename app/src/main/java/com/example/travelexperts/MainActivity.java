@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Setup the AppBarConfiguration with the correct R.id values
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_register, R.id.nav_view_bookings, R.id.nav_login, R.id.nav_packages)
+                R.id.nav_register, R.id.nav_mybooking, R.id.nav_login, R.id.nav_packages)
                 .setOpenableLayout(drawer)
                 .build();
 

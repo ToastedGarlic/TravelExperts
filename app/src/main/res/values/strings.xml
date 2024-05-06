@@ -13,9 +13,10 @@
 
     <!--    code by jack-->
     <string name="menu_login">Login</string>
-    <string name="menu_mybooking">My Booking</string>
+    <string name="menu_mybooking">My Bookings</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_packages">Vacation Packages</string>
+    <string name="menu_myInfo">My Profile</string>
 
     <string name="customerId">Id</string>
     <string name="custFirstName">First Name</string>
