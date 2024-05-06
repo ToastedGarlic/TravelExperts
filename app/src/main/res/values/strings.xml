@@ -13,7 +13,7 @@
 
     <!--    code by jack-->
     <string name="menu_login">Login</string>
-    <string name="menu_mybooking">Booking</string>
+    <string name="menu_mybooking">My Booking</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_packages">Vacation Packages</string>
 

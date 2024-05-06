@@ -1,5 +1,6 @@
 package com.example.travelexperts.Model;
 
+// code by jack
 public class Bookings {
     private int bookingId;
     private String bookingDate;

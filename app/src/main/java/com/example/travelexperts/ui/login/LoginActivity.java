@@ -79,76 +79,91 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                Thread t1 = new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        URI uri = null;
-                        try {
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
 
-                            uri = new URI("http://10.0.2.2:8080/TravelExpertsRESTJPA-1.0-SNAPSHOT/api/login/getcustomer/" + username + "/" + password);
-                            URL url = uri.toURL();
-                            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-                            String line;
-                            StringBuffer sb = new StringBuffer();
-                            while ((line = br.readLine()) != null)
-                            {
-                                sb.append(line);
-                            }
-                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(openFileOutput("user.json", MODE_PRIVATE)));
-                            bw.write(sb.toString());
-                            bw.close();
+                if (username.matches("^\\s*$") || password.matches("^\\s*$")) {
+                    //validate if username and password != null
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Username or Password Required", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    });
+                }
+                else
+                {
 
-                            // check to see if return username and password matched
-                            StringBuffer sb2 = new StringBuffer();
+                    Thread t1 = new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
+                            URI uri = null;
                             try {
-                                BufferedReader br2 = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
-                                String line2;
-                                while ((line2 = br2.readLine()) != null) {
-                                    sb.append(line2);
+
+                                uri = new URI("http://10.0.2.2:8080/TravelExpertsRESTJPA-1.0-SNAPSHOT/api/login/getcustomer/" + username + "/" + password);
+                                URL url = uri.toURL();
+                                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                                String line;
+                                StringBuffer sb = new StringBuffer();
+                                while ((line = br.readLine()) != null) {
+                                    sb.append(line);
                                 }
-                                br2.close();
-                                JSONArray jsonArray = new JSONArray(sb.toString());
-                                if (jsonArray.length() == 1) {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast toast = Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT);
-                                            toast.show();
-                                        }
-                                    });
-                                    Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
+                                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(openFileOutput("user.json", MODE_PRIVATE)));
+                                bw.write(sb.toString());
+                                bw.close();
 
+                                // check to see if return username and password matched
+                                StringBuffer sb2 = new StringBuffer();
+                                try {
+                                    BufferedReader br2 = new BufferedReader(new InputStreamReader(openFileInput("user.json")));
+                                    String line2;
+                                    while ((line2 = br2.readLine()) != null) {
+                                        sb.append(line2);
+                                    }
+                                    br2.close();
+                                    JSONArray jsonArray = new JSONArray(sb.toString());
+                                    // if return value is true then save user prefernece
+                                    if (jsonArray.length() == 1) {
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast toast = Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                            }
+                                        });
+                                        Executors.newSingleThreadExecutor().execute(new SaveCustomerId());
+
+                                    } else {
+                                        // false then sned message login failed
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast toast = Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                            }
+                                        });
+
+                                    }
+
+
+                                } catch (IOException | JSONException e) {
+                                    throw new RuntimeException(e);
                                 }
-                                else
-                                {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast toast = Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT);
-                                            toast.show();
-                                        }
-                                    });
 
-                                }
-
-
-                            } catch (IOException | JSONException e) {
+                            } catch (URISyntaxException | IOException e) {
                                 throw new RuntimeException(e);
                             }
-
-                        } catch (URISyntaxException | IOException e) {
-                            throw new RuntimeException(e);
                         }
-                    }
-                };
-                t1.start();
+                    };
+                    t1.start();
 
-            }
+                }
+                }
         });
     }
+    // if username and password matched, save the information preferences
     private class SaveCustomerId implements Runnable {
         @Override
         public void run() {
@@ -216,6 +231,8 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("custEmail", custEmail);
                 editor.putInt("agentId", agentId);
                 editor.commit();
+
+                // start the main activity
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
 
@@ -225,15 +242,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    private static JsonObject readJsonFromFile(String filePath) {
-        try {
-            Gson gson = new Gson();
-            JsonParser parser = new JsonParser();
-            JsonElement jsonElement = parser.parse(new FileReader(filePath));
-            return gson.fromJson(jsonElement, JsonObject.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 }

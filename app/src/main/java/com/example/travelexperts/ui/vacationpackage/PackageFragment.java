@@ -31,6 +31,8 @@ import java.util.concurrent.Executors;
  * Use the {@link PackageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+// code by jack
 public class PackageFragment extends Fragment {
 
     private ListView lvPackage;
@@ -43,6 +45,7 @@ public class PackageFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    // get package data from json file and display it on listview
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

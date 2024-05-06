@@ -52,7 +52,7 @@ public class BookingFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
         getCustomerBooking();
     }
-
+    // load customer booking from json file and display on list view
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class BookingFragment extends Fragment {
         return view;
     }
 
+    // get Customer package from Rest Server
     private void getCustomerBooking() {
         preferences = getActivity().getSharedPreferences("myprefs", Context.MODE_PRIVATE);
         int customerId = preferences.getInt("customerId", 0);

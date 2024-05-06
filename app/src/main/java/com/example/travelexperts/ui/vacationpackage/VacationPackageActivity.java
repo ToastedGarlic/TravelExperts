@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
+// code by Jack
 public class VacationPackageActivity extends AppCompatActivity {
 
     ListView lvPackages;

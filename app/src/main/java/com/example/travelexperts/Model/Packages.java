@@ -1,5 +1,6 @@
 package com.example.travelexperts.Model;
 
+// code by jack
 public class Packages {
     private int packageId;
     private String pkgName;
