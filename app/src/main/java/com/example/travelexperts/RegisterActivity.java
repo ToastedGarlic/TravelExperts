@@ -1,10 +1,12 @@
+// Created by Mohsen Novin Pour along with the XML,
+// this code handles the registration activity in this application
+
 package com.example.travelexperts;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,12 +35,13 @@ import java.util.concurrent.Executors;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    // UI elements
     private EditText edtFirstName, edtLastName, edtAddress, edtCity, edtProv, edtPostal,
             edtCountry, edtHomePhone, edtBusPhone, edtEmail, edtAgentId, edtUsername, edtPassword;
     private Button btnRegister;
+    private SharedPreferences preferences;
 
-    SharedPreferences preferences;
-
+    // Sets up the activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Binds UI elements to variables
     private void bindViews() {
         edtFirstName = findViewById(R.id.edtFirstName);
         edtLastName = findViewById(R.id.edtLastName);
@@ -67,21 +71,36 @@ public class RegisterActivity extends AppCompatActivity {
         edtBusPhone = findViewById(R.id.edtBusPhone);
         edtEmail = findViewById(R.id.edtEmail);
         edtAgentId = findViewById(R.id.edtAgentId);
-        edtUsername = findViewById(R.id.edtUsername);  // Assuming you have these EditTexts in your layout
+        edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
         btnRegister = findViewById(R.id.btnRegister);
     }
 
+    // Validates input fields for correct data
     private boolean validateInputs() {
-        // Example validation for empty fields
+        // Validation for first name
         if (edtFirstName.getText().toString().trim().isEmpty()) {
             edtFirstName.setError("First name is required");
             return false;
         }
-        // Add other validations as necessary
+
+        // Validation for province: exactly two letters only
+        String province = edtProv.getText().toString().trim();
+        if (!province.matches("[a-zA-Z]{2}")) {
+            edtProv.setError("Province must be exactly two letters");
+            return false;
+        }
+
+        String address = edtAddress.getText().toString().trim();
+        if (address.isEmpty()) {
+            edtAddress.setError("Address is required");
+            return false;
+            }
+
+
         return true;
     }
-
+    // Prepares and sends registration data
     private void registerCustomer() {
         Customer customer = new Customer(
                 0,
@@ -103,8 +122,6 @@ public class RegisterActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String jsonCustomer = gson.toJson(customer);
 
-        Log.d("RegisterActivity", "JSON being sent: " + jsonCustomer); // Log the JSON data
-
         Executors.newSingleThreadExecutor().execute(() -> {
             try {
                 sendCustomerData(jsonCustomer);
@@ -114,6 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Sends JSON data to the server
     private void sendCustomerData(String jsonData) throws Exception {
         URL url = new URL("http://10.0.2.2:8080/TravelExpertsRESTJPA-1.0-SNAPSHOT/api/customer/register");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -127,10 +145,9 @@ public class RegisterActivity extends AppCompatActivity {
             writer.flush();
             int responseCode = connection.getResponseCode();
             runOnUiThread(() -> {
-                if (responseCode == HttpURLConnection.HTTP_CREATED) {  // Check for HTTP_CREATED (201)
+                if (responseCode == HttpURLConnection.HTTP_CREATED) {
                     Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registration failed: " + responseCode, Toast.LENGTH_LONG).show();
                 }
@@ -140,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
+    // Runnable for saving customer ID in SharedPreferences
     private class SaveCustomerId implements Runnable {
         @Override
         public void run() {
@@ -159,7 +176,6 @@ public class RegisterActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     stringid = jsonObject.getString("customerId");
-
                 }
                 userid = Integer.parseInt(stringid);
 
@@ -167,8 +183,6 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("customerid", userid);
                 editor.commit();
-
-
             } catch (IOException | JSONException e) {
                 throw new RuntimeException(e);
             }
