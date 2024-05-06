@@ -16,6 +16,8 @@ import android.widget.EditText;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+// code by jack, modified by Michael to work in fragment
 public class ProfileFragment extends Fragment {
     private EditText edtFirstName, edtLastName, edtAddress, edtCity, edtProv, edtPostal,
             edtCountry, edtHomePhone, edtBusPhone, edtEmail, edtAgentId;
@@ -51,7 +53,6 @@ public class ProfileFragment extends Fragment {
         return view;
     }
     private void loadCustomer() {
-        int num = 105;
         edtFirstName.setText(preferences.getString("custFirstName", null));
         edtLastName.setText(preferences.getString("custLastName", null));
         edtAddress.setText(preferences.getString("custAddress", null));

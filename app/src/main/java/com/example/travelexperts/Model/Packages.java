@@ -77,6 +77,6 @@ public class Packages {
 
     @Override
     public String toString() {
-        return pkgName;
+        return "Vacation Package: " + pkgName;
     }
 }

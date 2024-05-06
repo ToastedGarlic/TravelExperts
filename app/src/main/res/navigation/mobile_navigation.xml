@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
-
+    <!--    code by michael-->
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.travelexperts.ui.home.HomeFragment"
@@ -40,38 +40,39 @@
         android:name="com.example.travelexperts.MessageFragment"
         android:label="Agent Messenger"
         tools:layout="@layout/fragment_message" />
+
+    <!--    code by jack-->
     <activity
         android:id="@+id/nav_login"
         android:name="com.example.travelexperts.ui.login.LoginActivity"
         android:label="@string/menu_login"
         tools:layout="@layout/activity_login"
         />
-    <activity
+    <!--    code by jack-->
+    <fragment
         android:id="@+id/nav_mybooking"
-        android:name="com.example.travelexperts.ui.mybooking.MyBookingActivity"
-        android:label="@string/menu_login"
-        tools:layout="@layout/activity_login"
+        android:name="com.example.travelexperts.ui.mybooking.BookingFragment"
+        android:label="@string/menu_mybooking"
+        tools:layout="@layout/fragment_booking"
         />
+    <!--    code by mohsen-->
     <activity
         android:id="@+id/nav_register"
         android:name="com.example.travelexperts.RegisterActivity"
         android:label="Register"
         tools:layout="@layout/activity_register" />
-    <activity
-        android:id="@+id/customerInfo"
-        android:name="com.example.travelexperts.ui.customerinfo.CustomerInfoActivity"
-        android:label="@string/menu_login"
-        tools:layout="@layout/activity_customerinfo"
-        />
-    <activity
+    <!--    code by jack-->
+    <fragment
         android:id="@+id/nav_packages"
-        android:name="com.example.travelexperts.ui.vacationpackage.VacationPackageActivity"
+        android:name="com.example.travelexperts.ui.vacationpackage.PackageFragment"
         android:label="@string/menu_packages"
-        tools:layout="@layout/activity_vacationpackage"
+        tools:layout="@layout/fragment_package"
         />
+    <!--    code by jack-->
     <fragment
         android:id="@+id/customerInfo"
         android:name="com.example.travelexperts.CustomerInfo"
         android:label="Customer Info"
         tools:layout="@layout/fragment_customer_info" />
+
 </navigation>

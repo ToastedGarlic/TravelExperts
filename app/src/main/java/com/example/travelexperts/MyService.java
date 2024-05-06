@@ -73,6 +73,9 @@ public class MyService extends Service {
                 } catch (URISyntaxException | IOException e) {
                     throw new RuntimeException(e);
                 }
+
+
+
             }
         };
         timer = new Timer();

@@ -13,12 +13,6 @@
             android:icon="@drawable/profile_170"
             android:title="@string/menu_profile" />
         <item
-            android:id="@+id/messageFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/agent_24"
-            android:title="Agent Chat" />
-        <item
             android:id="@+id/nav_mybooking"
             android:icon="@drawable/book_170"
             android:title="@string/menu_mybooking" />
@@ -26,5 +20,11 @@
             android:id="@+id/nav_packages"
             android:icon="@drawable/book_170"
             android:title="@string/menu_packages" />
+        <item
+            android:id="@+id/messageFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/agent_24"
+            android:title="Agent Chat" />
     </group>
 </menu>

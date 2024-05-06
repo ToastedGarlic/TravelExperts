@@ -41,7 +41,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
-
+//code by jack
 public class LoginActivity extends AppCompatActivity {
 
     EditText etUsername, etPassword;
