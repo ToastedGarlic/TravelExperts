@@ -18,7 +18,7 @@
             android:title="@string/menu_mybooking" />
         <item
             android:id="@+id/nav_packages"
-            android:icon="@drawable/book_170"
+            android:icon="@drawable/travel"
             android:title="@string/menu_packages" />
         <item
             android:id="@+id/messageFragment"

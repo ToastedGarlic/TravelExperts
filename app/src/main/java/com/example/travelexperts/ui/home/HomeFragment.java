@@ -67,11 +67,11 @@ public class HomeFragment extends Fragment {
     };
 
     private final View.OnClickListener bookListener= v -> {
-
+        Navigation.findNavController(getView()).navigate(R.id.action_booking);
     };
 
     private final View.OnClickListener serviceListener= v -> {
-
+        Navigation.findNavController(getView()).navigate(R.id.action_packages);
     };
     private final View.OnClickListener agentListener= v -> {
         Navigation.findNavController(getView()).navigate(R.id.action_go);
