@@ -1,10 +1,9 @@
-package com.example.travelexperts;
+    package com.example.travelexperts;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private Button btnRegister; // Button for registering
 
 
     @Override
@@ -42,21 +40,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(binding.appBarMain.toolbar);
         setupDrawerNavigation();
-
-        initiatePackageRetrieval();
-
-
     }
 
     private void setupDrawerNavigation() {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        // Ensure the navigation listener is set
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Setup the AppBarConfiguration with the correct R.id values
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_register, R.id.nav_login, R.id.customerInfo)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_register, R.id.nav_view_bookings, R.id.nav_login, R.id.nav_packages)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
